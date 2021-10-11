@@ -26,3 +26,5 @@ write
 is
 endif
 endwhile
+and
+or

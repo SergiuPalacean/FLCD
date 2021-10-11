@@ -4,7 +4,7 @@ Sintactical rules: (file Syntax.in)
 
 program = "start" { decllist | stmtlist } "end"
 
-decllist = declaration | declaration ";" decllist
+decllist = declaration ";" | declaration ";" decllist
 
 declaration = type " " IDENTIFIER
 
@@ -14,7 +14,7 @@ type1 = "int" | "char" | "string"
 
 listdecl = "list" "[" type1 "]"
 
-stmtlist = stmt | stmt ";" stmtlist
+stmtlist = stmt ";" | stmt ";" stmtlist
 
 stmt = simplstmt | structstmt
 
@@ -44,9 +44,9 @@ string = "string"
 
 string1 = char {string}
 
-char = 'letter | digit
+char = letter | digit
 
-iostmt = "read" | "write" "(" IDENTIFIER ")"
+iostmt = ("read" | "write") "(" IDENTIFIER ")"
 
 structstmt = ifstmt | whilestmt
 

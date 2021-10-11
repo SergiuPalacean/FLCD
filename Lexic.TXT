@@ -14,7 +14,7 @@ Lexic:
 
 	- reserved words:
 
-    		list char while else if then int start end read write is endif endwhile
+    		list char while else if then int start end read write is endif endwhile and or
 
       b.identifiers
 
@@ -50,5 +50,5 @@ Lexic:
 
       		string = char {string}
 
-      		char = 'letter | digit
+      		char = letter | digit
 
