@@ -8,13 +8,13 @@ Lexic:
 
       a.Special symbols, representing:
 
-	- operators + - * / < > <= = >=
+	- operators + - * / < > <= = >= !=
 
 	- separators [] () ; space
 
 	- reserved words:
 
-    		list char while else if then int start end read write is endif endwhile and or
+    		list char while else if then int start end read write is endif endwhile and or string
 
       b.identifiers
 
