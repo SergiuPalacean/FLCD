@@ -1,0 +1,63 @@
+The words - predefined tokens are specified between " and ":
+
+Sintactical rules: (file Syntax.in)
+
+program = "start" { decllist | stmtlist } "end"
+
+decllist = declaration | declaration ";" decllist
+
+declaration = type " " IDENTIFIER
+
+type  = type1 | listdecl
+
+type1 = "int" | "char" | "string"
+
+listdecl = "list" "[" type1 "]"
+
+stmtlist = stmt | stmt ";" stmtlist
+
+stmt = simplstmt | structstmt
+
+simplstmt = assignstmt | iostmt
+
+assignstmt = IDENTIFIER "is" expression
+
+expression = term {("+" | "-")expression}
+
+term = factor {("*"|"/") term}
+
+factor = const | IDENTIFIER
+
+const = noconst | character | string
+
+noconst = [("+" | "-")] no | "0"
+
+no = nonzerodig {no | "0"}
+
+nonzerodig = "1" |...| "9"
+
+character = 'letter' | 'digit'
+
+digit = "0" | "1" |...| "9"
+
+string = "string"
+
+string1 = char {string}
+
+char = 'letter | digit
+
+iostmt = "read" | "write" "(" IDENTIFIER ")"
+
+structstmt = ifstmt | whilestmt
+
+ifstmt = "if(" condition ") THEN" stmtlist ["else" stmtlist]
+
+whilestmt = "while(" condition ") then" stmtlist
+
+condition = expression RELATION expression
+
+RELATION = "<" | "<=" | "=" | "!=" | ">=" | ">"
+
+
+*question: can we have symbols like <,= etc if we didn't include them in the alphabet?
+
