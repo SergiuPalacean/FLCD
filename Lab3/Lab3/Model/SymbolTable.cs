@@ -8,11 +8,11 @@ namespace Lab3.Model
     {
         private Node root;
         private int index;
-
+        public readonly string typestring = "Binary tree";
         public SymbolTable()
         {
             root = null;
-            index = 0;
+            index = 1;
         }
 
         public int Add(string id)
@@ -59,6 +59,20 @@ namespace Lab3.Model
                 }
                 return aux.Index;
             }
+        }
+        private void TraverseInOrderHelper(Node parent)
+        {
+            if (parent != null)
+            {
+                TraverseInOrderHelper(parent.Left);
+                Console.WriteLine("(+"+ parent.Index+", " +parent.Data+")");
+                TraverseInOrderHelper(parent.Right);
+            }
+        }
+
+        public void TraverseInOrder()
+        {
+            TraverseInOrderHelper(this.root);
         }
     }
 }
