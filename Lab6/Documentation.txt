@@ -1,0 +1,8 @@
+﻿states = state | state, state
+state = ll
+l = A | B | C | ... | Z
+
+alphabet = a | b | c | ... | z | A | B | C | ... | Z | 0 | 1 | ... | 9
+
+transition = {state alphabet state}
+

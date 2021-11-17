@@ -93,37 +93,51 @@ namespace Lab6
         {
             var sequence = Console.ReadLine();
             var splitSequence = sequence.Split(' ');
-            var initState = "";
-            var finState = "";
+            var initTransition = "";
+            var finTransition = "";
             var transition = "";
             var index = 1;
             var startState = "";
             var endState = "";
             var accepted = true;
+            var acceptedInit = false;
+            var acceptedEnd = false;
+            var initState = "";
 
-            initState = splitSequence[0];
-            finState = splitSequence[splitSequence.Length - 1];
-            
-            if(initialStates.Contains(initState) && finalStates.Contains(finState))
+            initTransition = splitSequence[0];
+            finTransition = splitSequence[splitSequence.Length - 1];
+            foreach(var (k1, k2) in transitions.Keys)
+            {
+                foreach(var inits in initialStates)
+                {
+                    if (transitions[(inits, k2)].Contains(initTransition))
+                    {
+                        acceptedInit = true;
+                        initState = inits;
+                    }
+                }
+                foreach(var finits in finalStates)
+                {
+                    if(transitions[(k1, finits)].Contains(finTransition))
+                    {
+                        acceptedEnd = true;
+                    }
+                }
+            }
+
+            startState = initState;
+
+            if(acceptedInit == true && acceptedEnd == true)
             {
                 foreach (var seq in splitSequence)
                 {
-                    if (index % 3 == 1)
+                    accepted = false;
+                    foreach(var (k1, k2) in transitions.Keys)
                     {
-                        startState = seq;
-                    }
-                    else if(index % 3 == 2)
-                    {
-                        transition = seq;
-                    }
-                    else if(index % 3 == 0)
-                    {
-                        if(transitions.ContainsKey((startState, endState)))
+                        if(transitions.ContainsKey((startState, k2)) && transitions[(startState, k2)].Contains(seq))
                         {
-                            if(!transitions[(startState, endState)].Contains(transition))
-                            {
-                                accepted = false;
-                            }
+                            startState = k2;
+                            accepted = true;
                         }
                     }
                 }
@@ -134,11 +148,11 @@ namespace Lab6
             }
             if(accepted == true)
             {
-                Console.WriteLine("DFA is accepted");
+                Console.WriteLine("Sequence is accepted");
             }
             else
             {
-                Console.WriteLine("DFA is not accepted");
+                Console.WriteLine("Sequence is not accepted");
             }
         }
 
