@@ -1,0 +1,4 @@
+Review for https://github.com/RazzleBoi/LFCD/tree/master/Labs/Lab5
+
+-uncommented lines of code left in the program
+-otherwise nicely formated and they made good use of solid principles
